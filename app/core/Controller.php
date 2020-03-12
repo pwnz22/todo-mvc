@@ -18,7 +18,7 @@ class Controller
 
     public function msg()
     {
-        if (!session_id()) @session_start();
+        if (!session_id()) session_start();
         return $msg = new \Plasticbrain\FlashMessages\FlashMessages();
     }
 
