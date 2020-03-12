@@ -1,5 +1,14 @@
 {
     "require": {
-        "illuminate/database": "6"
+        "illuminate/database": "6",
+        "illuminate/pagination": "^6.18",
+        "delight-im/auth": "^8.1",
+        "plasticbrain/php-flash-messages": "^1.0"
+    },
+    "autoload": {
+        "classmap": [
+            "app/models"
+        ],
+        "files": ["app/helpers/functions.php"]
     }
 }

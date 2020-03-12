@@ -2,16 +2,18 @@
 
 class Home extends Controller
 {
-    public function index($name = '')
+    public function index()
     {
-        $user = $this->model('User');
-        $user->name = $name;
+        $sort_order = isset($_GET['sort']) && strtolower($_GET['sort']) == 'asc' ? 'desc' : 'asc';
+        $todos = Todo::query();
 
-        $this->view('home/index', ['name' => $user->name]);
-    }
+        if (isset($_GET['sortby'])) {
+            $todos = $todos->orderBy($_GET['sortby'], $sort_order);
+        }
 
-    public function test()
-    {
-        echo 'test';
+        $this->view('home/index', [
+            'todos' => $todos->paginate(2, ['*'], 'page', $_GET['page']),
+            'sort_order' => $sort_order
+        ]);
     }
 }
